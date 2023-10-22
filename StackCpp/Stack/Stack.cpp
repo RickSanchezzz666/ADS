@@ -20,7 +20,10 @@ public:
 			stack.pop_back();
 			-- TOP;
 		}
-		else cout << "\nThe Stack is empty!\n\n";
+		else {
+			cout << "\nThe Stack is empty!\n\n";
+			return;
+		}
 	}
 
 	int getPeekElement() {
@@ -29,7 +32,10 @@ public:
 			cout << "\nYour peek element is: " << peekElem << endl;
 			return peekElem;
 		}
-		else cout << "\nThe Stack is empty!\n\n";
+		else {
+			cout << "\nThe Stack is empty!\n\n";
+			return 0;
+		}
 	}
 
 	void printStack() {
@@ -40,7 +46,10 @@ public:
 			}
 			cout << endl;
 		}
-		else cout << "\nThe Stack is empty!\n\n";
+		else {
+			cout << "\nThe Stack is empty!\n\n";
+			return;
+		}
 	}
 };
 
