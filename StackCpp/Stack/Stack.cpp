@@ -3,73 +3,73 @@
 
 using namespace std;
 
+class Stack {
+private:
+	vector<int> stack;
+	int TOP;
+public:
+	Stack() : TOP(-1) {}
 
-vector<int> createArray() {
-	vector<int> array;
-	return array;
-}
-
-void pushInStack(vector<int>& stack, int* TOP, int value) {
-	stack.push_back(value);
-	++* TOP;
-}
-
-void popFromStack(vector<int>& stack, int* TOP) {
-	if (*TOP >= 0) {
-		stack.pop_back();
-		--* TOP;
+	void pushInStack(int value) {
+		stack.push_back(value);
+		++ TOP;
 	}
-	else cout << "\nThe Stack is empty!\n\n";
-}
 
-int getPeekElement(vector<int>& stack, int* TOP) {
-	if (*TOP >= 0) {
-		int peekElem = stack[*TOP];
-		cout << "\nYour peek element is: " << peekElem << endl;
-		return peekElem;
-	}
-	else cout << "\nThe Stack is empty!\n\n";
-}
-
-void printStack(vector<int>& stack, int* TOP) {
-	if (*TOP >= 0) {
-		cout << "\nYour stack is:\n";
-		for (int i = 0; i < *TOP + 1; i++) {
-			cout << "[" << stack[i] << "]";
+	void popFromStack() {
+		if (TOP >= 0) {
+			stack.pop_back();
+			-- TOP;
 		}
-		cout << endl;
+		else cout << "\nThe Stack is empty!\n\n";
 	}
-	else cout << "\nThe Stack is empty!\n\n";
-}
+
+	int getPeekElement() {
+		if (TOP >= 0) {
+			int peekElem = stack[TOP];
+			cout << "\nYour peek element is: " << peekElem << endl;
+			return peekElem;
+		}
+		else cout << "\nThe Stack is empty!\n\n";
+	}
+
+	void printStack() {
+		if (TOP >= 0) {
+			cout << "\nYour stack is:\n";
+			for (int i = 0; i < TOP + 1; i++) {
+				cout << "[" << stack[i] << "]";
+			}
+			cout << endl;
+		}
+		else cout << "\nThe Stack is empty!\n\n";
+	}
+};
+
 
 
 int main() {
-	int topNum = -1;
-	int* TOP = &topNum;
+	Stack stack;
 
-	vector<int> array = createArray();
+	stack.printStack();
 
-	printStack(array, TOP);
+	stack.pushInStack(5);
+	stack.pushInStack(11);
+	stack.popFromStack();
+	stack.pushInStack(6);
+	stack.printStack();
+	stack.getPeekElement();
 
-	pushInStack(array, TOP, 5);
-	pushInStack(array, TOP, 11);
-	popFromStack(array, TOP);
-	pushInStack(array, TOP, 6);
-	printStack(array, TOP);
-	getPeekElement(array, TOP);
+	stack.pushInStack(3);
+	stack.pushInStack(52);
+	stack.pushInStack(21);
 
-	pushInStack(array, TOP, 3);
-	pushInStack(array, TOP, 52);
-	pushInStack(array, TOP, 21);
+	stack.printStack();
 
-	printStack(array, TOP);
+	stack.getPeekElement();
 
-	getPeekElement(array, TOP);
+	stack.popFromStack();
+	stack.popFromStack();
 
-	popFromStack(array, TOP);
-	popFromStack(array, TOP);
-
-	printStack(array, TOP);
+	stack.printStack();
 
 	return 0;
 }
