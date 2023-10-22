@@ -3,48 +3,39 @@
 
 using namespace std;
 
-vector<int> createArray(int* TOP) {
+vector<int> createArray() {
 	vector<int> array;
-	*TOP = -1;
 	return array;
 }
-
-bool isStackEmpty(vector<int>& stack, int* TOP) {
-	if (*TOP == -1 && stack.empty()) {
-		cout << "\nThe Stack is empty!\n\n";
-		return true;
-	}
-	else {
-		// cout << "\nThe Stack is not empty!\nIt has " << '"' << stack.size() << '"' << " elements.\n";
-		return false;
-	}
-}
-
+	
 void pushInStack(vector<int>& stack, int* TOP, int value) {
 	stack.push_back(value);
 	++* TOP;
 }
 
 void popFromStack(vector<int>& stack, int* TOP) {
-	if (isStackEmpty(stack, TOP)) return;
-	stack.pop_back();
-	--* TOP;
+	if (*TOP >= 0) {
+		stack.pop_back();
+		--* TOP;
+	} else cout << "\nThe Stack is empty!\n\n";
 }
 
 int getPeekElement(vector<int>& stack, int* TOP) {
-	if (isStackEmpty(stack, TOP)) return 0;
-	int peekElem = stack[*TOP];
-	cout << "\nYour peek element is: " << peekElem << endl;
-	return peekElem;
+	if (*TOP >= 0) {
+		int peekElem = stack[*TOP];
+		cout << "\nYour peek element is: " << peekElem << endl;
+		return peekElem;
+	} else cout << "\nThe Stack is empty!\n\n";
 }
 
 void printStack(vector<int>& stack, int* TOP) {
-	if (isStackEmpty(stack, TOP)) return;
-	cout << "\nYour stack is:\n";
-	for (int i = 0; i < *TOP + 1; i++) {
-		cout << "[" << stack[i] << "]";
-	}
-	cout << endl;
+	if (*TOP >= 0) {
+		cout << "\nYour stack is:\n";
+		for (int i = 0; i < *TOP + 1; i++) {
+			cout << "[" << stack[i] << "]";
+		}
+		cout << endl;
+	} else cout << "\nThe Stack is empty!\n\n";
 }
 
 
