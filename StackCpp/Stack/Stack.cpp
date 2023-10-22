@@ -3,11 +3,12 @@
 
 using namespace std;
 
+
 vector<int> createArray() {
 	vector<int> array;
 	return array;
 }
-	
+
 void pushInStack(vector<int>& stack, int* TOP, int value) {
 	stack.push_back(value);
 	++* TOP;
@@ -17,7 +18,8 @@ void popFromStack(vector<int>& stack, int* TOP) {
 	if (*TOP >= 0) {
 		stack.pop_back();
 		--* TOP;
-	} else cout << "\nThe Stack is empty!\n\n";
+	}
+	else cout << "\nThe Stack is empty!\n\n";
 }
 
 int getPeekElement(vector<int>& stack, int* TOP) {
@@ -25,7 +27,8 @@ int getPeekElement(vector<int>& stack, int* TOP) {
 		int peekElem = stack[*TOP];
 		cout << "\nYour peek element is: " << peekElem << endl;
 		return peekElem;
-	} else cout << "\nThe Stack is empty!\n\n";
+	}
+	else cout << "\nThe Stack is empty!\n\n";
 }
 
 void printStack(vector<int>& stack, int* TOP) {
@@ -35,15 +38,16 @@ void printStack(vector<int>& stack, int* TOP) {
 			cout << "[" << stack[i] << "]";
 		}
 		cout << endl;
-	} else cout << "\nThe Stack is empty!\n\n";
+	}
+	else cout << "\nThe Stack is empty!\n\n";
 }
 
 
 int main() {
 	int topNum = -1;
 	int* TOP = &topNum;
-	
-	vector<int> array = createArray(TOP);
+
+	vector<int> array = createArray();
 
 	printStack(array, TOP);
 
