@@ -3,8 +3,9 @@
 
 using namespace std;
 
-vector<int> createArray() {
+vector<int> createArray(int* TOP) {
 	vector<int> array;
+	*TOP = -1;
 	return array;
 }
 
@@ -25,6 +26,7 @@ void pushInStack(vector<int>& stack, int* TOP, int value) {
 }
 
 void popFromStack(vector<int>& stack, int* TOP) {
+	if (isStackEmpty(stack, TOP)) return;
 	stack.pop_back();
 	--* TOP;
 }
@@ -50,7 +52,7 @@ int main() {
 	int topNum = -1;
 	int* TOP = &topNum;
 	
-	vector<int> array = createArray();
+	vector<int> array = createArray(TOP);
 
 	printStack(array, TOP);
 
