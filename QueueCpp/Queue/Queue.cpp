@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <iostream>
-#include <vector>
 
 #define SIZE 10
 
@@ -40,7 +39,7 @@ int getPeek(queue* q) {
 
 void enqueue(queue* q, int newItem) {
     if (isQueueFull(q)) return;
-    q->FRONT = 0;
+    else if (isQueueEmpty(q)) q->FRONT = 0;
     ++q->REAR;
     q->queue[q->REAR] = newItem;
 }
@@ -80,6 +79,9 @@ int main()
     getPeek(q);
 
     dequeue(q);
+    dequeue(q);
+
+    enqueue(q, 32);
 
     printQueue(q);
     getPeek(q);
