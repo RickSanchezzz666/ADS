@@ -39,7 +39,7 @@ int getPeek(queue* q) {
 
 void enqueue(queue* q, int newItem) {
     if (isQueueFull(q)) return;
-    else if (isQueueEmpty(q)) q->FRONT = 0;
+    else if (q->FRONT == -1 && q->REAR == -1) q->FRONT = 0;
     ++q->REAR;
     q->queue[q->REAR] = newItem;
 }
