@@ -46,9 +46,10 @@ void enqueue(queue* q, int newItem) {
 
 int dequeue(queue* q) {
     if (isQueueEmpty(q)) return 0;
-    ++q->FRONT;
     if (q->FRONT >= q->REAR) {
         createQueue(q);
+    } else {
+        ++q->FRONT;
     }
     return q->FRONT;
 }
