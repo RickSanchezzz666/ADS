@@ -4,54 +4,84 @@
 
 struct Node {
 	int data = NULL;
-	struct Node *next = NULL;
+	struct Node *next = nullptr;
 };
 
 class LinkedList {
 private:
 	int __count = -1;
-	Node* items = new Node[SIZE];
+	Node* __head;
 
-	void __createHead() {
+	Node* __createHead() {
 		if (__count <= -1) {
 			Node* head = new Node;
 			++__count;
-			items[__count] = *head;
+			return head;
 		}
 	}
 
 	bool __isListEmpty() {
-		if (__count <= 0) { return true; } else { return false; };
+		if (__count <= 0 && __head->next == nullptr) { return true; } else { return false; };
 	}
 
 	bool __isListFull() {
-		if(__count == SIZE - 1 && items[__count].next == NULL) { return true; } else { return false; };
+		if(__count == SIZE) { return true; } else { return false; };
 	}
 
 public:
-	LinkedList() : __count(-1) { __createHead(); };
+	LinkedList() : __count(-1) { __head = __createHead(); };
 
 	~LinkedList() {
-		delete[] items;
+		Node* temp = __head;
+		while (temp != nullptr) {
+			Node* next = temp->next;
+			delete temp;
+			temp = next;
+		}
 	}
-
 
 	void addNode(int newData) {
 		if (__isListFull() == true) { 
-			std::cout << "The List is Full!";
+			std::cout << "The List is Full!\n";
 			return; 
 		}
 		if (__count <= -1) {
 			__createHead();
 		}
-		else {
-			Node* node = new Node;
-			Node* previousNode = &items[__count];
-			previousNode->data = newData;
-			previousNode->next = node;
-			++__count;
-			items[__count] = *node;
+		Node* newNode = new Node;
+		Node* node = __head;
+		while (node->next != nullptr) {
+			node = node->next;
 		}
+
+		node->data = newData;
+		node->next = newNode;
+		++__count;
+	}
+
+	void deleteNode() {
+		if (__isListEmpty() == true) {
+			std::cout << "The List is Empty!\n";
+			return;
+		}
+		Node* previous = nullptr;
+		Node* node = __head;
+		while (node->next != nullptr) {
+			previous = node;
+			node = node->next;
+		}
+
+		if (previous != nullptr) {
+			delete node;
+			previous->next = nullptr;
+		}
+		else {
+			delete __head;
+			__head = nullptr;
+		}
+
+		--__count;
+
 	}
 
 	void displayList() {
@@ -61,8 +91,10 @@ public:
 		}
 		else {
 			std::cout << "Your List is:\nHEAD";
+			Node* node = __head;
 			for (int i = 0; i < __count; i++) {
-				std::cout << "->" << items[i].data;
+				std::cout << "->" << node->data;
+				node = node->next;
 			}
 			std::cout << std::endl;
 		}
@@ -76,6 +108,10 @@ int main()
 	list.addNode(5);
 	list.addNode(11);
 	list.addNode(15);
+	list.addNode(105);
+	list.addNode(26);
+
+	list.deleteNode();
 
 	list.displayList();
 	return 0;
