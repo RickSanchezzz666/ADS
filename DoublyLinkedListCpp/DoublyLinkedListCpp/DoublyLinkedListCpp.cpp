@@ -13,14 +13,6 @@ private:
     int __count = -1;
     Node* __head;
 
-    Node* __createHead() {
-        if (__count == -1) {
-            Node* head = new Node;
-            return head;
-        }
-        return nullptr;
-    }
-    
     bool __isListEmpty() {
         if (__count <= -1) { return true; }
         else { return false; };
@@ -31,22 +23,16 @@ private:
         else { return false; }
     }
 
-    /*Node* __getTail() {
-        if (__isListEmpty() == false) {
-            Node* node = __head;
-            while (node->next != nullptr) {
-                node = node->next;
-            }
-            return node;
-        }        
-        return nullptr;
-    }*/
-
 public:
-    DoublyLinkedList() : __count(-1) { __head = __createHead(); }
+    DoublyLinkedList() : __count(-1) { __head  = new Node; }
 
     ~DoublyLinkedList() {
-        
+        Node* temp = __head;
+        while (temp != nullptr) {
+            Node* next = temp->next;
+            delete temp;
+            temp = next;
+        }
     }
 
     void insertAtTheBeginning(int newData) {
@@ -70,7 +56,7 @@ public:
         }
     }
 
-    void insertInBeetwenNodes(int newData, int nodePos) {
+    void insertInBetweenNodes(int newData, int nodePos) {
         if (__isListFull()) {
             std::cout << "The List is Full!\n";
             return;
@@ -123,8 +109,6 @@ public:
                 return;
             }
 
-            //Node* tail = __getTail();
-
             Node* node = __head;
             for (int i = 0; i < __count; i++) {
                 node = node->next;
@@ -134,6 +118,99 @@ public:
             newNode->prev = node;
 
             ++__count;
+        }
+    }
+
+    void deleteAtTheBeginning() {
+        if (__isListEmpty()) {
+            std::cout << "The List is Empty!\n";
+            return;
+        }
+        else {
+            Node* head = __head;
+            if (head->next == nullptr) {
+                delete head;
+                __head = nullptr;
+            }
+            else {
+                Node* node = head->next;
+                delete head;
+                node->prev = nullptr;
+                __head = node;
+            }
+            --__count;
+        }
+    }
+
+    void deleteByPosition(int nodePos) {
+        if (__isListEmpty()) {
+            std::cout << "The List is Empty!\n";
+            return;
+        }
+        else {
+            if (nodePos < 0 || nodePos > __count) {
+                std::cout << "This position is invalid!\n";
+                return;
+            }
+
+            Node* node = __head;
+            if (nodePos == 0) {
+                delete node;
+                __head = nullptr;
+            }
+            else {
+                for (int i = 1; i < nodePos; i++) {
+                    node = node->next;
+                }
+                if (node == nullptr) {
+                    std::cout << "This position is invalid!\n";
+                    return;
+                }
+                Node* prev = node->prev;
+                Node* next = node->next;
+                delete node;
+                prev->next = next;
+                next->prev = prev;
+            }
+            --__count;
+        }
+    }
+
+    void deleteAtTheEnd() {
+        if (__isListEmpty()) {
+            std::cout << "The List is Empty!\n";
+            return;
+        }
+        else {
+            Node* node = __head;
+            if (node->next == nullptr) {
+                delete node;
+                __head = nullptr;
+            }
+            else {
+                for (int i = 0; i < __count; i++) {
+                    node = node->next;
+                }
+                node->prev->next = nullptr;
+                delete node;
+            }
+            --__count;
+        }
+    }
+
+    bool searchNode(int value) {
+        Node* node = __head;
+        for (int i = 0; i < __count; i++) {
+            if (node->next != nullptr) {
+                if (node->data = value) {
+                    return true;
+                }
+                node = node->next;
+            }
+            else {
+                std::cout << "The Node was not found!\n";
+                return false;
+            }
         }
     }
 
@@ -163,11 +240,21 @@ int main()
     list.insertAtTheBeginning(3);
     list.insertAtTheBeginning(16);
 
-    list.insertInBeetwenNodes(13, 1);
+    list.insertInBetweenNodes(13, 1);
 
     list.insertAtTheEnd(666);
 
-    list.insertAtTheEnd(6662);
+    list.insertAtTheEnd(15);
+
+    list.deleteAtTheBeginning();
+
+    list.deleteByPosition(2);
+
+    list.deleteAtTheEnd();
 
     list.displayList();
+
+    bool node = list.searchNode(666);
+
+    std::cout << "Node by value was found: " << (node ? "True" : "False");
 }
