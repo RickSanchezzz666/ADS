@@ -202,7 +202,7 @@ public:
         Node* node = __head;
         for (int i = 0; i < __count; i++) {
             if (node->next != nullptr) {
-                if (node->data = value) {
+                if (node->data == value) {
                     return true;
                 }
                 node = node->next;

@@ -76,6 +76,70 @@ class DoublyLinkedList:
 
         self.__count += 1
 
+    def delete_at_the_beginning(self):
+        if self.__is_list_empty(): 
+            print('The list is Empty!\n')
+            return
+
+        if self.__head.next == None:
+            self.__head.data = None
+        else:
+            node = self.__head.next
+            node.prev = None
+            self.__head = node
+        self.__count -= 1
+
+    def delete_inner_node(self, nodePos):
+        if self.__is_list_empty(): 
+            print('The list is Empty!\n')
+            return
+        
+        if(nodePos < 0 or nodePos > self.__count):
+            print('This position is invalid!\n')
+            return
+        
+        if(nodePos == 0):
+            self.delete_at_the_beginning()
+            return
+        else:
+            node = self.__head
+            for _ in range(1, nodePos):
+                node = node.next
+            if(node == None):
+                print('This position is invalid!\n')
+                return
+            prev = node.prev
+            next = node.next
+            prev.next = next
+            next.prev = prev
+        self.__count -= 1
+
+    def delete_at_the_end(self):
+        if self.__is_list_empty(): 
+            print('The list is Empty!\n')
+            return
+        
+        node = self.__head
+        if(node.next == None):
+            self.delete_at_the_beginning()
+            return
+        else:
+            for _ in range(self.__count):
+                node = node.next
+            node.prev.next = None
+        self.__count -= 1
+
+    def search_node(self, data):
+        node = self.__head
+        for _ in range(self.__count):
+            if(node.next is not None):
+                if(node.data == data):
+                    return True
+                node = node.next
+            else:
+                print('The Node was not found!\n')
+                return False
+    
     def display_list(self):
         if self.__is_list_empty(): 
             print('The list is Empty!\n')
@@ -103,3 +167,14 @@ list.insert_at_the_end(66)
 
 
 list.display_list()
+
+list.delete_at_the_beginning()
+
+list.delete_inner_node(3)
+
+list.delete_at_the_end()
+
+list.display_list()
+
+node = list.search_node(74)
+print(node)
