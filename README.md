@@ -1,2 +1,2 @@
 # ADS
-My Algorithm and Data Structures codes in C++ and Python
+My Algorithms and Data Structures implementations in C++ and Python
