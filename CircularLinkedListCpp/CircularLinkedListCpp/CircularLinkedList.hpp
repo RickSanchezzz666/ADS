@@ -17,13 +17,13 @@ private:
 public:
 	CircularLinkedList();
 
-	void insertionAtTheBeggining(int newData);
+	void insertionAtTheBeginning(int newData);
 
 	void insertionAtTheEnd(int newData);
 
 	void insertionAfterNode(int newData, int nodePos);
 
-	void deleteAtTheBeggining();
+	void deleteAtTheBeginning();
 
 	void deleteAtTheEnd();
 

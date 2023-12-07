@@ -5,13 +5,13 @@
 int main() {
 	CircularLinkedList list;
 
-	list.insertionAtTheBeggining(5);
-	list.insertionAtTheBeggining(13);
+	list.insertionAtTheBeginning(5);
+	list.insertionAtTheBeginning(13);
 	list.insertionAtTheEnd(14);
 	list.insertionAfterNode(66, 2);
 	list.insertionAtTheEnd(32);
 
-	list.deleteAtTheBeggining();
+	list.deleteAtTheBeginning();
 	list.deleteAtTheEnd();
 
 	list.deleteNode(2);

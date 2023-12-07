@@ -26,7 +26,7 @@ CircularLinkedList::~CircularLinkedList() {
 	__head = nullptr;
 }
 
-void CircularLinkedList::insertionAtTheBeggining(int newData) {
+void CircularLinkedList::insertionAtTheBeginning(int newData) {
 	if (__isListFull()) {
 		std::cout << "Your List is Full!" << std::endl;
 		return;
@@ -55,7 +55,7 @@ void CircularLinkedList::insertionAtTheEnd(int newData) {
 		return;
 	}
 	else if (__isListEmpty()) {
-		insertionAtTheBeggining(newData);
+		insertionAtTheBeginning(newData);
 		return;
 	}
 	else {
@@ -81,7 +81,7 @@ void CircularLinkedList::insertionAfterNode(int newData, int nodePos) {
 		return;
 	}
 	else if (nodePos < 1) {
-		insertionAtTheBeggining(newData);
+		insertionAtTheBeginning(newData);
 		return;
 	}
 	else if (nodePos - 1 >= __count) {
@@ -106,7 +106,7 @@ void CircularLinkedList::insertionAfterNode(int newData, int nodePos) {
 
 }
 
-void CircularLinkedList::deleteAtTheBeggining() {
+void CircularLinkedList::deleteAtTheBeginning() {
 	if (__isListEmpty()) {
 		std::cout << "Your List is Empty!" << std::endl;
 		return;
@@ -151,7 +151,7 @@ void CircularLinkedList::deleteNode(int nodePos) {
 		std::cout << "Your List is Empty!" << std::endl;
 		return;
 	} else if (nodePos == 0) {
-		deleteAtTheBeggining();
+		deleteAtTheBeginning();
 		return;
 	}
 	else if (nodePos - 1 >= __count && nodePos <= SIZE) {
