@@ -3,6 +3,8 @@
 #include "SelectionSort.hpp"
 #include "InsertionSort.hpp"
 #include "MergeSort.hpp"
+#include "QuickSort.hpp"
+#include "CountingSort.hpp"
 
 static void displayArray(int arr[], int size) {
 	for (int i = 0; i < size; i++ ) {
@@ -62,14 +64,44 @@ int main() {
 
 	std::cout << "\nMergeSort: ";
 
-	int p = 0;
-
-	int r = size - 1;
-
-	mergeSort(merge, p, r);
+	mergeSort(merge, 0, size - 1);
 
 	displayArray(merge, size);
 
+
+	//QuickSort
+
+	int quick[] = { 16, 19, 20, 7, 1, 21, 10, 14, 5, 23, 6, 25 };
+
+	std::cout << "\nQuickSort: ";
+
+	quickSort(quick, 0, size - 1);
+
+	displayArray(quick, size);
+
+
+	//CountingSort
+
+	int counting[] = { 16, 19, 20, 7, 1, 21, 10, 14, 5, 23, 6, 25 };
+
+	std::cout << "\nCountingSort: ";
+
+	countingSort(counting, size);
+
+	displayArray(counting, size);
+
+
+	//RadixSort
+
+	int radix[] = { 373, 128, 815, 588, 766, 708, 118, 848, 159, 464, 254, 348, 352 };
+
+	int radixSize = sizeof(radix) / sizeof(int);
+
+	std::cout << "\nRadixSort: ";
+
+//	radixSort(radix, radixSize);
+
+	displayArray(radix, radixSize);
 
 	return 0;
 }
