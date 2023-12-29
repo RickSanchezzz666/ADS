@@ -36,6 +36,12 @@
     <ClCompile Include="CountingSort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RadixSort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BucketSort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BubbleSort.hpp">
@@ -54,6 +60,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CountingSort.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RadixSort.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BucketSort.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

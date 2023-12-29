@@ -5,8 +5,11 @@
 #include "MergeSort.hpp"
 #include "QuickSort.hpp"
 #include "CountingSort.hpp"
+#include "RadixSort.hpp"
+#include "BucketSort.hpp"
 
-static void displayArray(int arr[], int size) {
+template <typename T>
+static void displayArray(T arr[], int size) {
 	for (int i = 0; i < size; i++ ) {
 		std::cout << arr[i] << " ";
 	}
@@ -99,9 +102,22 @@ int main() {
 
 	std::cout << "\nRadixSort: ";
 
-//	radixSort(radix, radixSize);
+	radixSort(radix, radixSize);
 
 	displayArray(radix, radixSize);
+
+
+	//BucketSort
+
+	float bucket[] = { .42, .35, .33, .52, .37, .47, .51 };
+
+	int bucketSize = sizeof(bucket) / sizeof(int);
+
+	std::cout << "\nBucketSort: ";
+
+	bucketSort(bucket, bucketSize, bucketSize, 10);
+
+	displayArray(bucket, bucketSize);
 
 	return 0;
 }

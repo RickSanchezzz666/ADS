@@ -1,5 +1,4 @@
 #include "CountingSort.hpp"
-#include <iostream>
 
 void countingSort(int arr[], int size) {
 	int max = arr[0];
