@@ -9,7 +9,6 @@
 #include "BucketSort.hpp"
 #include "HeapSort.hpp"
 #include "ShellSort.hpp"
-#include <limits>
 
 template <typename T>
 static void displayArray(T arr[], int size) {
