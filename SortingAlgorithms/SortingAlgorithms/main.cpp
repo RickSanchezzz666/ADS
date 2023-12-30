@@ -7,6 +7,9 @@
 #include "CountingSort.hpp"
 #include "RadixSort.hpp"
 #include "BucketSort.hpp"
+#include "HeapSort.hpp"
+#include "ShellSort.hpp"
+#include <limits>
 
 template <typename T>
 static void displayArray(T arr[], int size) {
@@ -118,6 +121,28 @@ int main() {
 	bucketSort(bucket, bucketSize, bucketSize, 10);
 
 	displayArray(bucket, bucketSize);
+
+
+	//HeapSort
+
+	int heap[] = { 16, 19, 20, 7, 1, 21, 10, 14, 5, 23, 6, 25 };
+
+	std::cout << "\nHeapSort: ";
+
+	heapSort(heap, size);
+
+	displayArray(heap, size);
+
+
+	//ShellSort
+
+	int shell[] = { 16, 19, 20, 7, 1, 21, 10, 14, 5, 23, 6, 25 };
+
+	std::cout << "\nShellSort: ";
+
+	shellSort(shell, size);
+
+	displayArray(shell, size);
 
 	return 0;
 }
