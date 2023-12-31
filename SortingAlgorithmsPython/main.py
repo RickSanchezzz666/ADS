@@ -5,6 +5,9 @@ import mergeSort
 import quickSort
 import countingSort
 import radixSort
+import bucketSort
+import heapSort
+import shellSort
 
 def displayArray(arr):
     for x in arr:
@@ -50,8 +53,20 @@ sort('CountingSort', countingSort.counting_sort, arr)
 
 #RadixSort
 
-sort('RadixSort', radixSort.radix_sort, [373, 128, 815, 588, 766, 708, 118, 848, 159, 464, 254, 348, 352])
+radix_arr = [373, 128, 815, 588, 766, 708, 118, 848, 159, 464, 254, 348, 352]
 
+sort('RadixSort', radixSort.radix_sort, radix_arr)
 
+#BucketSort
 
+bucket_arr = [.42, .35, .33, .52, .37, .47, .51]
 
+sort('BucketSort', bucketSort.bucket_sort, bucket_arr, len(bucket_arr), 10)
+
+#HeapSort
+
+sort('HeapSort', heapSort.heap_sort, arr)
+
+#ShellSort
+
+sort('ShellSort', shellSort.shell_sort, arr)
