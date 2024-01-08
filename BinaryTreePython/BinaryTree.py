@@ -29,4 +29,10 @@ class BinaryTree:
             self.traversal_in_order(node.left)
             self.traversal_in_order(node.right)
             print(f'{node.data}->', end='')
+
+    def is_tree_full(self, root: Node):
+        if root == None: return True
+        if root.left == None and root.right == None: return True
+        if root.left and root.right: return (self.is_tree_full(root.left) and self.is_tree_full(root.right))
+        return False
     

@@ -36,3 +36,13 @@ void BinaryTree::traversalPostOrder(Node* node) {
 		std::cout << node->data << "->";
 	}
 }
+
+bool BinaryTree::isTreeFull(Node* root) {
+	if (root == nullptr) return true;
+
+	if (root->left == nullptr && root->right == nullptr) return true;
+
+	if (root->left && root->right) return (isTreeFull(root->left) && isTreeFull(root->right));
+
+	return false;
+}

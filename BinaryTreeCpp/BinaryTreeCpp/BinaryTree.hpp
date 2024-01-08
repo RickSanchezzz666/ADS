@@ -16,7 +16,7 @@ public:
 	void traversalPreOrder(Node* node);
 	void traversalPostOrder(Node* node);
 
-
+	bool isTreeFull(Node* root);
 
 	//TODO: Make different types of Trees
 };

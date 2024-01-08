@@ -18,5 +18,11 @@ int main() {
 	std::cout << "\nPostOrderTraversal: ";
 	tree.traversalPostOrder(tree.root);
 
+	//BinaryTreeTypes
+
+	std::cout << "\nIs This Tree is Full: ";
+	bool full = tree.isTreeFull(tree.root);
+	std::cout << (full ? "True" : "False") << std::endl;
+
 	return 0;
 }

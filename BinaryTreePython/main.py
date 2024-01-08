@@ -17,3 +17,10 @@ print()
 
 print('Post Order Traversal: ', end='')
 tree.traversal_post_order(tree.root)
+print()
+
+#Binary Tree Types
+
+print('Is This Tree is Full: ', end='')
+full = tree.is_tree_full(tree.root)
+print('True' if full else 'False', end='\n')
