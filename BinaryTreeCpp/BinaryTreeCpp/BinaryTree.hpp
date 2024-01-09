@@ -1,5 +1,18 @@
 #pragma once
 
+enum class BinaryTreeType {
+	FULL,
+	PERFECT,
+	COMPLETE,
+	BALANCED
+};
+
+enum class TreeTraversalType {
+	INORDER,
+	PREORDER,
+	POSTORDER
+};
+
 struct Node {
 	int data;
 	Node* left = nullptr;
