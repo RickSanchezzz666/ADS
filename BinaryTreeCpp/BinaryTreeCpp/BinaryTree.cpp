@@ -1,5 +1,6 @@
 #include "BinaryTree.hpp";
 #include <iostream>
+#include <cmath>
 
 BinaryTree::BinaryTree(int data) {
 	root = new Node;
@@ -37,6 +38,7 @@ void BinaryTree::traversalPostOrder(Node* node) {
 	}
 }
 
+
 bool BinaryTree::isTreeFull(Node* root) {
 	if (root == nullptr) return true;
 
@@ -46,6 +48,7 @@ bool BinaryTree::isTreeFull(Node* root) {
 
 	return false;
 }
+
 
 int BinaryTree::__depth(Node* node) {
 	int d = 0;
@@ -66,11 +69,46 @@ bool BinaryTree::__isTreePerfectCheck(Node* root, int d, int level) {
 	return __isTreePerfectCheck(root->left, d, level + 1) && __isTreePerfectCheck(root->right, d, level + 1);
 }
 
-
 bool BinaryTree::isTreePerfect(Node* root) {
 	int d = __depth(root);
 	return __isTreePerfectCheck(root, d);
 }
+
+int BinaryTree::__nodesCount(Node* node) {
+	if (node == nullptr) return 0;
+	return (1 + __nodesCount(node->left) + __nodesCount(node->right));
+}
+
+bool BinaryTree::__isTreeCompleteCheck(Node* root, int nodesNum, int index) {
+	if (root == nullptr) return true;
+	if (index >= nodesNum) return false;
+
+	return __isTreeCompleteCheck(root->left, nodesNum, 2 * index + 1) && __isTreeCompleteCheck(root->right, nodesNum, 2 * index + 2);
+}
+
+bool BinaryTree::isTreeComplete(Node* root) {
+	int nodesNum = __nodesCount(root);
+	return __isTreeCompleteCheck(root, nodesNum);
+}
+
+bool BinaryTree::isTreeBalanced(Node* root, int *height) {
+	int leftHeight = 0, rightHeight = 0, l = 0, r = 0;
+
+	if (root == nullptr) {
+		*height = 0;
+		return true;
+	}
+
+	l = isTreeBalanced(root->left, &leftHeight);
+	r = isTreeBalanced(root->right, &rightHeight);
+
+	*height = std::max(leftHeight, rightHeight) + 1;
+
+	if (std::abs((leftHeight - rightHeight) >= 2)) return false;
+	else return l && r;
+
+}
+
 
 
 

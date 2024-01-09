@@ -33,5 +33,17 @@ int main() {
 	bool perfect = tree.isTreePerfect(tree.root);
 	std::cout << (perfect ? "True" : "False") << std::endl;
 
+	//Complete
+	std::cout << "\nIs This Tree is Complete: ";
+	bool complete = tree.isTreeComplete(tree.root);
+	std::cout << (complete ? "True" : "False") << std::endl;
+
+	//Balanced
+	int height = 0;
+
+	std::cout << "\nIs This Tree is Balanced: ";
+	bool balanced = tree.isTreeBalanced(tree.root, &height);
+	std::cout << (balanced ? "True" : "False") << std::endl;
+
 	return 0;
 }

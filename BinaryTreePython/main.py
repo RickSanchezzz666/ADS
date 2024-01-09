@@ -2,7 +2,7 @@ import BinaryTree
 
 def check_tree_type(*args):
     print(f'Is This Tree is {args[0]}: ', end='')
-    result = args[1](args[2])
+    result = args[1](*args[2:])
     print('True' if result else 'False', end='\n')
 
 tree = BinaryTree.BinaryTree(1)
@@ -34,3 +34,11 @@ tree.root.right.left = tree.new_node(29)
 tree.root.right.right = tree.new_node(12)
 
 check_tree_type('Perfect', tree.is_tree_perfect, tree.root)
+
+#Complete
+check_tree_type('Complete', tree.is_tree_complete, tree.root)
+
+#Balanced
+height = tree.Height()
+
+check_tree_type('Balanced', tree.is_tree_balanced, tree.root, height)
