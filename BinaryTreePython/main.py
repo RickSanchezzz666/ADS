@@ -40,5 +40,4 @@ check_tree_type('Complete', tree.is_tree_complete, tree.root)
 
 #Balanced
 height = tree.Height()
-
 check_tree_type('Balanced', tree.is_tree_balanced, tree.root, height)
