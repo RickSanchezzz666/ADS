@@ -7,6 +7,9 @@ struct Node {
 };
 
 class BinaryTree {
+private:
+	int __depth(Node* node);
+	bool __isTreePerfectCheck(Node* root, int d, int level = 0);
 public:
 	Node* root;
 
@@ -17,6 +20,7 @@ public:
 	void traversalPostOrder(Node* node);
 
 	bool isTreeFull(Node* root);
+	bool isTreePerfect(Node* root);
 
 	//TODO: Make different types of Trees
 };

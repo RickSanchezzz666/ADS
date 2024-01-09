@@ -7,6 +7,19 @@ class BinaryTree:
 
     def __init__(self, data):
         self.root = self.Node(data)
+
+    def __depth(self, node: Node):
+        d = 0
+        while(node != None):
+            d += 1
+            node = node.left
+        return d
+    
+    def __is_tree_perfect_check(self, root: Node, d, level = 0):
+        if root == None: return True
+        if root.left == None and root.right == None: return (d == level + 1)
+        if root.left == None or root.right == None: return False
+        return self.__is_tree_perfect_check(root.left, d, level + 1) and self.__is_tree_perfect_check(root.right, d, level + 1)
     
     def new_node(self, data):
         new_node = self.Node(data)
@@ -35,4 +48,9 @@ class BinaryTree:
         if root.left == None and root.right == None: return True
         if root.left and root.right: return (self.is_tree_full(root.left) and self.is_tree_full(root.right))
         return False
+
+    def is_tree_perfect(self, root: Node):
+        d = self.__depth(root)
+        return self.__is_tree_perfect_check(root, d)
+
     

@@ -20,9 +20,18 @@ int main() {
 
 	//BinaryTreeTypes
 
+	//Full
 	std::cout << "\nIs This Tree is Full: ";
 	bool full = tree.isTreeFull(tree.root);
 	std::cout << (full ? "True" : "False") << std::endl;
+
+	//Perfect
+	tree.root->right->left = tree.newNode(20);
+	tree.root->right->right = tree.newNode(15);
+
+	std::cout << "\nIs This Tree is Perfect: ";
+	bool perfect = tree.isTreePerfect(tree.root);
+	std::cout << (perfect ? "True" : "False") << std::endl;
 
 	return 0;
 }

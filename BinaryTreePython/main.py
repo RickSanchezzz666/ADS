@@ -1,5 +1,10 @@
 import BinaryTree
 
+def check_tree_type(*args):
+    print(f'Is This Tree is {args[0]}: ', end='')
+    result = args[1](args[2])
+    print('True' if result else 'False', end='\n')
+
 tree = BinaryTree.BinaryTree(1)
 
 tree.root.left = tree.new_node(4)
@@ -21,6 +26,11 @@ print()
 
 #Binary Tree Types
 
-print('Is This Tree is Full: ', end='')
-full = tree.is_tree_full(tree.root)
-print('True' if full else 'False', end='\n')
+#Full
+check_tree_type('Full', tree.is_tree_full, tree.root)
+
+#Perfect
+tree.root.right.left = tree.new_node(29)
+tree.root.right.right = tree.new_node(12)
+
+check_tree_type('Perfect', tree.is_tree_perfect, tree.root)

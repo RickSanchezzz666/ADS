@@ -46,3 +46,31 @@ bool BinaryTree::isTreeFull(Node* root) {
 
 	return false;
 }
+
+int BinaryTree::__depth(Node* node) {
+	int d = 0;
+	while (node != nullptr) {
+		d++;
+		node = node->left;
+	}
+	return d;
+}
+
+bool BinaryTree::__isTreePerfectCheck(Node* root, int d, int level) {
+	if (root == nullptr) return true;
+
+	if (root->left == nullptr && root->right == nullptr) return (d == level + 1);
+
+	if (root->left == nullptr || root->right == nullptr) return false;
+
+	return __isTreePerfectCheck(root->left, d, level + 1) && __isTreePerfectCheck(root->right, d, level + 1);
+}
+
+
+bool BinaryTree::isTreePerfect(Node* root) {
+	int d = __depth(root);
+	return __isTreePerfectCheck(root, d);
+}
+
+
+
