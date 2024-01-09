@@ -7,6 +7,18 @@ BinaryTree::BinaryTree(int data) {
 	root->data = data;
 }
 
+void BinaryTree::__destructTheTree(Node* node) {
+	if (node) {
+		__destructTheTree(node->left);
+		__destructTheTree(node->right);
+		delete node;
+	}
+}
+
+BinaryTree::~BinaryTree() {
+	__destructTheTree(root);
+}
+
 Node* BinaryTree::newNode(int data) {
 	Node* newNode = new Node;
 	newNode->data = data;

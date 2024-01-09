@@ -26,10 +26,13 @@ private:
 
 	int __nodesCount(Node* node);
 	bool __isTreeCompleteCheck(Node* root, int nodesNum, int index = 0);
+
+	void __destructTheTree(Node* node);
 public:
 	Node* root;
 
 	BinaryTree(int data);
+	~BinaryTree();
 	Node* newNode(int data);
 	void traversalInOrder(Node* node);
 	void traversalPreOrder(Node* node);
