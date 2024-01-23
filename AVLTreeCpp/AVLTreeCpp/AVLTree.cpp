@@ -63,7 +63,7 @@ Node* AVLTree::updateBalanceFactor(Node* node, int key) {
 	if (balanceFactor < -1) {
 		if (key > node->right->key) return leftRotate(node);
 		else if (key < node->right->key) {
-			node->left = rightRotate(node->left);
+			node->right = rightRotate(node->right);
 			return leftRotate(node);
 		}
 	}
@@ -71,7 +71,6 @@ Node* AVLTree::updateBalanceFactor(Node* node, int key) {
 }
 
 Node* AVLTree::leftRotate(Node* x) {
-	if (x == nullptr || x->right == nullptr) return x;
 	Node* y = x->right;
 	Node* temp = y->left;
 	y->left = x;
@@ -82,7 +81,6 @@ Node* AVLTree::leftRotate(Node* x) {
 }
 
 Node* AVLTree::rightRotate(Node* y) {
-	if (y == nullptr || y->left == nullptr) return y;
 	Node* x = y->left;
 	Node* temp = x->right;
 	x->right = y;
