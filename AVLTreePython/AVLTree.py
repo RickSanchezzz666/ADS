@@ -32,24 +32,33 @@ class AVLTree:
     def left_rotate(self, x: Node):
         y = x.right
         temp = y.left
-        y.left = y
+        y.left = x
         x.right = temp
+        self.__update_height(x)
+        self.__update_height(y)
+        return y
 
 
     def right_rotate(self, y: Node):
-        pass
+        x = y.left
+        temp = x.right
+        x.right = y
+        y.left = temp
+        self.__update_height(y)
+        self.__update_height(x)
+        return x
 
     def update_balance_factor(self, node: Node, key):
         self.__update_height(node)
         balance_factor = self.__get_balance_factor(node)
         if balance_factor > 1:
             if key < node.left.key: return self.right_rotate(node)
-            elif key > node.left.key: 
+            else:
                 node.left = self.left_rotate(node.left)
                 return self.right_rotate(node)
         elif balance_factor < -1:
             if key > node.right.key: return self.left_rotate(node)
-            elif key < node.right.key: 
+            else:
                 node.right = self.right_rotate(node.right)
                 return self.left_rotate(node)
         return node
@@ -60,13 +69,32 @@ class AVLTree:
         elif key > node.key: node.right = self.insert_node(node.right, key)
         else: return node
 
-        self.update_balance_factor(node, key)
+        return self.update_balance_factor(node, key)
 
-    def delete_node(self):
-        pass
+    def delete_node(self, node: Node, key):
+        if not node: return node
+        elif key < node.key: node.left = self.delete_node(node.left, key)
+        elif key > node.key: node.right = self.delete_node(node.right, key)
+        else:
+            if node.left is None:
+                temp = node.right
+                node = None
+                return temp
+            elif node.right is None:
+                temp = node.left
+                node = None
+                return temp
+            temp = self.__get_min_val_node(node.right)
+            node.key = temp.key
+            node.right = self.delete_node(node.right, temp.key)
+
+        if node is None: return node
+
+        return self.update_balance_factor(node, key)
 
     def traversal_in_order(self, node: Node):
         if (node):
             self.traversal_in_order(node.left)
-            print(f'{"root:" if node.key == self.root.key else ""}{node.key}->')
+            print(f'{"root:" if node.key == self.root.key else ""}{node.key}->', end='')
+            #{"sub-root:" if node.key == self.root.left.key or node.key == self.root.right.key else ""}
             self.traversal_in_order(node.right)
