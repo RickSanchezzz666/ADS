@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FibonacciHeapCpp", "FibonacciHeapCpp\FibonacciHeapCpp.vcxproj", "{C7FA51BB-4238-429A-8915-E43DD37C6F64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7FA51BB-4238-429A-8915-E43DD37C6F64}.Debug|x64.ActiveCfg = Debug|x64
+		{C7FA51BB-4238-429A-8915-E43DD37C6F64}.Debug|x64.Build.0 = Debug|x64
+		{C7FA51BB-4238-429A-8915-E43DD37C6F64}.Debug|x86.ActiveCfg = Debug|Win32
+		{C7FA51BB-4238-429A-8915-E43DD37C6F64}.Debug|x86.Build.0 = Debug|Win32
+		{C7FA51BB-4238-429A-8915-E43DD37C6F64}.Release|x64.ActiveCfg = Release|x64
+		{C7FA51BB-4238-429A-8915-E43DD37C6F64}.Release|x64.Build.0 = Release|x64
+		{C7FA51BB-4238-429A-8915-E43DD37C6F64}.Release|x86.ActiveCfg = Release|Win32
+		{C7FA51BB-4238-429A-8915-E43DD37C6F64}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7A5906B-52F2-4203-BE21-3E76FDF23755}
+	EndGlobalSection
+EndGlobal
