@@ -19,12 +19,9 @@ struct Node {
 
 class FibonacciHeap {
 private:
-	int nodesNum;
+	int nodesNum = 0;
 public:
-	Node* rt; // root of Heap equal to minNode
-
 	Node* initializeFHeap();
-	FibonacciHeap() { rt = initializeFHeap(); }
 
 	void displayFHeap(Node* root);
 
@@ -37,5 +34,8 @@ public:
 	void consolidate(Node* root);
 	Node* extractMin(Node* root);
 
-
+	void cutNode(Node* root, Node* x, Node* y);
+	void cascadeCutNode(Node* root, Node* x);
+	bool decreaseKeyOfNode(Node* root, int val, int decreaseVal);
+	bool deleteKey(Node* root, int val);
 };
