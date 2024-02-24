@@ -11,12 +11,13 @@ Node* FibonacciHeap::initializeFHeap() {
 }
 
 void FibonacciHeap::displayFHeap(Node* root) {
+	Node* node = root;
 	Node* r = root;
 	if (r == nullptr) {
 		std::cerr << "\nHeap is Empty\n";
 		return;
 	}
-	std::cout << "Root nodes:\n";
+	std::cout << "\nRoot nodes:\n";
 	do {
 		std::cout << r->value;
 		r = r->right;
@@ -53,33 +54,31 @@ Node* FibonacciHeap::insertNode(Node* root, int value) {
 }
 
 
-void FibonacciHeap::fibonacciLink(Node* root, Node* y, Node* x) {
+Node* FibonacciHeap::fibonacciLink(Node* root, Node* y, Node* x) {
 	y->left->right = y->right;
 	y->right->left = y->left;
-	if (x->right == x) root = x;
-	y->left = y;
-	y->right = y;
-	y->parent = x;
 
 	if (x->child == nullptr) x->child = y;
 
-	y->right = x->child;
-	y->left = x->child->left;
-	x->child->left->right = y;
-	x->child->left = y;
+	y->right = x->child->right;
+	y->left = x->child;
+	x->child->right->left = y;
+	x->child->right = y;
 
 	if (y->value < x->child->value) x->child = y;
+	y->parent = x;
 	x->degree++;
+
+	return x;
 }
 
 
 
-void FibonacciHeap::consolidate(Node* root) {
+Node* FibonacciHeap::consolidate(Node* root) {
 	int degree;
 	float f = (log(nodesNum)) / (log(2));
 	int size = f;
-	std::vector<Node*> arr(size + 1);
-	for (int i = 0; i <= size; i++) arr[i] = nullptr;
+	std::vector<Node*> arr((size + 1), nullptr);
 	Node* x = root;
 	Node* y;
 	Node* z;
@@ -88,31 +87,30 @@ void FibonacciHeap::consolidate(Node* root) {
 	do {
 		pt = pt->right;
 		degree = x->degree;
-		while (arr[degree] != nullptr){
+		while (arr[degree] != nullptr) {
 			y = arr[degree];
 			if (x->value > y->value) {
 				z = x;
 				x = y;
 				y = z;
 			}
-			if (y == root) root = x;
-			fibonacciLink(root, y, x);
+			if (y == root) root = root->right;
+			x = fibonacciLink(root, y, x);
+			y->mark = 'C';
 
-			if (x->right == x) root = x;
 			arr[degree] = nullptr;
 			degree++;
 		}
 
 		arr[degree] = x;
-		x = x->right;
+		x = pt;
 	} while (x != root);
 
 	root = nullptr;
+	Node* minNode = nullptr;
 
 	for (int j = 0; j <= degree; j++) {
 		if (arr[j] != nullptr) {
-			arr[j]->left = arr[j];
-			arr[j]->right = arr[j];
 			if (root != nullptr) {
 				root->left->right = arr[j];
 				arr[j]->right = root;
@@ -120,12 +118,15 @@ void FibonacciHeap::consolidate(Node* root) {
 				root->left = arr[j];
 				if (arr[j]->value < root->value) root = arr[j];
 			}
-			else root = arr[j];
-
-			if (root == nullptr) root = arr[j];
-			else if (arr[j]->value < root->value) root = arr[j];
+			else {
+				root = arr[j];
+				minNode = arr[j];
+			}
+			if (minNode == nullptr || arr[j]->value < minNode->value) minNode = arr[j];
 		}
 	}
+
+	return minNode;
 }
 
 Node* FibonacciHeap::extractMin(Node* root) {
@@ -138,25 +139,29 @@ Node* FibonacciHeap::extractMin(Node* root) {
 		x = z->child;
 		do {
 			ptr = x->right;
-			root->left->right = x;
-			x->right = root;
-			x->left = root->left;
-			root->left = x;
-			if (x->value < root->value) root = x;
-
 			x->parent = nullptr;
 			x = ptr;
 		} while (ptr != z->child);
 	}
-	if (z == z->right && z->child == nullptr) root = nullptr;
-	else {
+	if (z == z->right && z->child == nullptr) {
+		delete z;
+		return nullptr;
+	} else {
 		z->left->right = z->right;
 		z->right->left = z->left;
-		root = z->right;
-		consolidate(root);
+		Node* newRoot = z->right;
+		newRoot = consolidate(newRoot);
+		delete z;
+		nodesNum--;
+		Node* min = newRoot;
+		Node* temp = newRoot->right;
+		do {
+			if (temp->value < min->value) min = temp;
+			temp = temp->right;
+		} while (temp != newRoot);
+
+		return min;
 	}
-	nodesNum--;
-	return root;
 }
 
 /*
