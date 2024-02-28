@@ -109,6 +109,7 @@ void BTree::deleteKey(int value) {
 
 		delete tmp;
 	}
+
 	return;
 }
 
